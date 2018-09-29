@@ -22,21 +22,22 @@ class User extends Admin_Controller
 
 	public function edit($id = null)
 	{
-		$id === null || $this->data['user'] = $this->user_m->get($id);
+		if ($id) {
+			$this->data['user'] = $this->user_m->get($id);
+			count($this->data['user']) || $this->data['errors'][''] = 'User not found';
+		} else {
+			$this->data['user'] = $this->user_m->get_new();
+		}
 
 		$rules = $this->user_m->rules_admin;
 		$id || $rules['password']['rules'] .= '|required';
-
 		$this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run()) {
-			// We can login 
-			if ($this->user_m->login()) {
-				redirect('admin/dashboard');
-			} else {
-				$this->session->set_flashdata('error', 'The email/password is incorrect!');
-				redirect('admin/user/login', 'refresh');
-			}
+			$data = $this->user_m->array_from_post(['name', 'email', 'password']);
+			$data['password'] = $this->user_m->hash($data['password']);
+			$this->user_m->save($data, $id);
+			redirect('admin/user');
 		}
 
 		$this->data['subview'] = 'admin/user/edit';
@@ -79,8 +80,11 @@ class User extends Admin_Controller
 	{
 		$id = $this->uri->segment(4);
 		$this->db->where('email', $this->input->post('email'));
+		
+		$id = $id ? $id : null;
+		$this->db->where('id !=', $id);
+
 		$user = $this->user_m->get();
-		!$id == null || $this->db->where('id !=', $id);
 
 		if(count($user)){
 			$this->form_validation->set_message('_unique_email','The %s sholud be unique!');

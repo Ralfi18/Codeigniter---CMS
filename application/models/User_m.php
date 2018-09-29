@@ -24,11 +24,6 @@ class User_M extends MY_Model
 			'label'=>'Email', 
 			'rules'=>'trim|required|valid_email|callback__unique_email'
 		],
-		'order' => [
-			'field'=>'order',
-			'label'=>'Order', 
-			'rules'=>'trim|is_natural'
-		],
 		'password' => [
 			'field'=>'password',
 			'label'=>'Password',
@@ -72,6 +67,15 @@ class User_M extends MY_Model
 	public function loggedin()
 	{
 		return (bool) $this->session->userdata('loggedin');
+	}
+
+	public function get_new()
+	{
+		$user = new stdClass();
+		$user->name = '';
+		$user->email = '';
+		$user->password = '';
+		return $user;
 	}
 
 	public function hash($string)
