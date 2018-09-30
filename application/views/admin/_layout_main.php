@@ -9,8 +9,9 @@
 	      <li class="active">
 	      	<a href="<?php echo site_url('admin/dashboard'); ?>">Home</a>
 	      </li>
-	      <li><?php echo anchor('admin/pages', 'pages'); ?></li>
-	      <li><?php echo anchor('admin/user', 'user'); ?></li>
+	      <li><?php echo anchor('admin/page', 'pages'); ?></li>
+	      <li><?php echo anchor('admin/page/order', 'order pages'); ?></li>
+	      <li><?php echo anchor('admin/user', 'users'); ?></li>
 	    </ul>
 	  </div>
 	</div>

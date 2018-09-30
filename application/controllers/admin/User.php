@@ -22,6 +22,7 @@ class User extends Admin_Controller
 
 	public function edit($id = null)
 	{
+		// fetch a user or set a new one
 		if ($id) {
 			$this->data['user'] = $this->user_m->get($id);
 			count($this->data['user']) || $this->data['errors'][''] = 'User not found';
@@ -46,7 +47,8 @@ class User extends Admin_Controller
 
 	public function delete($id)
 	{
-
+		$this->user_m->delete($id);
+		redirect('admin/user');
 	}
 
 	public function login()
