@@ -2,6 +2,7 @@
 # Zip file is for the static files and index
 
 <div>
+	<pre>
 	<VirtualHost *:80>
 		DocumentRoot /var/www/cms
 		ServerName cms.loc
@@ -11,4 +12,5 @@
 			Require all granted
 		</Directory>
 	</VirtualHost>
+	</pre>
 <div>
