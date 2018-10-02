@@ -26,6 +26,10 @@ class Page extends Admin_Controller
 
 	public function order_ajax()
 	{
+		if (isset($_POST['sortable'])) {
+			// dump($_POST['sortable']);
+			$this->page_m->save_order($_POST['sortable']);
+		}
 		// Fetch all pages
 		$this->data['pages'] = $this->page_m->get_nested();
 		// load a view

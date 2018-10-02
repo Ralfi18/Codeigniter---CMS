@@ -6,6 +6,7 @@
     <!-- Bootstrap -->
     <link href="<?php echo site_url('css/bootstrap.min.css'); ?>" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.css">
+    <link rel="stylesheet" href="<?php echo site_url('css/admin.css'); ?>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <?php if (isset($soratble) && $soratble ) : ?>
 			<script src="https://code.jquery.com/ui/1.8.16/jquery-ui.min.js"></script>

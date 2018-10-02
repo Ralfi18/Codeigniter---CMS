@@ -18,13 +18,16 @@
 		);
 		$('#save').click(function(){
 			oSortable = $('.sortable').nestedSortable('toArray');
-			// $.post(
-			// 	"<?php echo site_url('admin/page/order_ajax'); ?>",
-			// 	{ soratble: oSortable},
-			// 	function(data) {
-			// 		$('#orderResult').html(data);
-			// 	}
-			// )
+			$('#orderResult').slideUp(function(){
+				$.post(
+					"<?php echo site_url('admin/page/order_ajax'); ?>",
+					{ sortable: oSortable},
+					function(data) {
+						$('#orderResult').html(data);
+						$('#orderResult').slideDown();
+					}
+				);
+			});
 		});
 	});
 </script>

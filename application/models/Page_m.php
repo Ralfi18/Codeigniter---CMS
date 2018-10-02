@@ -60,6 +60,27 @@ class Page_m extends MY_Model
 	    ->update($this->_table_name);
 	}
 
+	public function save_order($pages)
+	{
+
+		if(count($pages)) {
+
+			foreach($pages as $order => $page) {
+				// dump($page);die();
+				if ($page['item_id'] !== '') {
+					$data = [
+						'parent_id' => (int) $page['parent_id'],
+						'order' => $order
+					];
+					$this->db
+					  ->set($data)
+					  ->where($this->_primary_key, $page['item_id'])
+					  ->update($this->_table_name);
+				}
+			}
+		}
+	}
+
 	public function get_nested()
 	{
 		$pages = $this->db->get('pages')->result_array();
